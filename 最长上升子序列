@@ -1,0 +1,42 @@
+### 最长上升子序列 
+```
+//主要思路：对于第i个数来说： f[i] = max(f[j] + 1)
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+const int  N = 1010;
+
+int n;
+int a[N],f[N];
+
+
+int main()
+{
+    scanf("%d",&n);
+    for(int i = 1 ;i <= n ; i ++)scanf("%d",&a[i]);
+
+    for(int i = 1 ;i <= n; i ++)
+    {
+        f[i]=1;//只有a[i]这一个数
+        for(int j = 1; j < i ; j ++)
+        {
+            if (a[j] < a[i])
+            f[i]=max(f[i],f[j] + 1);
+        }
+    }
+
+    int res = 0;
+    for (int i = 1; i <= n; i++)res=max(res,f[i]);
+
+    printf("%d ",res);
+
+    return 0;
+}
+
+作者：Daysgone
+链接：https://www.acwing.com/activity/content/code/content/2891249/
+来源：AcWing
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+```
